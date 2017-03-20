@@ -37,6 +37,10 @@ object Main extends App {
   val account = client.users.getCurrentAccount
   println(s"Linked Account is ${account.getName.getDisplayName}")
 
+  val totalSpace = client.users.getSpaceUsage.getAllocation.getIndividualValue.getAllocated
+  val usedSpace = client.users.getSpaceUsage.getUsed
+  println(s"${totalSpace - usedSpace} of ${totalSpace} bytes available")
+
   /** UPLOAD ITEM TEST **/
   println("==> TEST UPLOADING LOCAL FILE")
   val localResourcePath = "/jabberwocky.txt"
